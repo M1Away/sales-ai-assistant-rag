@@ -79,6 +79,7 @@ def _apply_masks(text, patterns):
             text = regex.sub('[IP_HIDDEN]', text)
     return key
 
+<<<<<<< HEAD
 """
 PermissionError是权限错误，IOError是输入/输出错误
 这个PermissionError主要解决进程短暂否定、网络文件瞬间抖动、磁盘繁忙，几百毫秒可能就好了
@@ -90,6 +91,12 @@ PermissionError是权限错误，IOError是输入/输出错误
 5.全程记录日志
 """
 @retry_on_error(max_retries=3, delay=0.5, exception=(IOError, PermissionError))
+=======
+
+@retry_on_error(max_retries=3, delay=0.5, exception=(IOError, PermissionError))
+# PermissionError是权限错误，IOError是输入/输出错误
+# 这个PermissionError主要解决进程短暂否定、网络文件瞬间抖动、磁盘繁忙，几百毫秒可能就好了
+>>>>>>> d4466ef9591f9c23a841d08776c16c3cb6f5bd57
 @log_execution
 def read_file_safely(file_path):
     """
@@ -99,7 +106,11 @@ def read_file_safely(file_path):
     # 模拟一个随机故障用于测试重试机制
     if random.random() < 0.3: raise IOError("Simulated IO Error")
     with open(file_path, 'r', encoding='utf-8', errors='ignore') as f:
+<<<<<<< HEAD
         # 为了程序不崩溃，选择牺牲数据的完整性,read_line会一次性读取文件中所有内容
+=======
+        # 为了程序不崩溃，选择牺牲数据的完整性
+>>>>>>> d4466ef9591f9c23a841d08776c16c3cb6f5bd57
         return f.readline()
 
 
@@ -121,7 +132,10 @@ def process_logs(*file_paths, output_file='secure_file.txt',
 
     # 预编译正则
     patterns = {}
+<<<<<<< HEAD
     # 判断标准和规则，规则名字叫'email'等，规则的内容是后面的预编译正则表达式
+=======
+>>>>>>> d4466ef9591f9c23a841d08776c16c3cb6f5bd57
     if mask_email: patterns['email'] = re.compile(r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b')
     if mask_phone: patterns['phone'] = re.compile(r'\b1[3-9]\d{9}\b|\b\d{3}-\d{8}\b')
     if mask_ip: patterns['ip'] = re.compile(r'\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b')
@@ -152,6 +166,33 @@ def process_logs(*file_paths, output_file='secure_file.txt',
             # 列表推导式+any():过滤错误
             file_error = [line for line in cleaned_lines if any(kw in line for kw in error_keywords)]
             stats['error_count'] += len(file_error)
+=======
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+>>>>>>> d4466ef9591f9c23a841d08776c16c3cb6f5bd57
 
 
 
