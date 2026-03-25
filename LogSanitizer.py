@@ -134,6 +134,7 @@ def process_logs(*file_paths, output_file='secure_file.txt',
     # 日志头，执行多少个文件
     print(f"\n🛡️  LogGuard Pro 启动 | 目标文件: {len(file_paths)}")
 
+<<<<<<< HEAD
     for f_file in file_paths:
         # 判断f_file是否存在
         if not os.path.exists(f_file):
